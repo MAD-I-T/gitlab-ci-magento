@@ -1,0 +1,11 @@
+include:
+  - local: '.magento-actions-full-template.yml'
+
+build:stage:
+  extends: .build:stage
+
+security-scan-files:
+  extends: .security-scan-files:stage:test
+
+security-scan-module:
+  extends: .security-scan-module:stage:test

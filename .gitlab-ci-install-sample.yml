@@ -1,0 +1,18 @@
+  include:
+    - local: '.gitlab-ci-main-template.yml'
+
+  install-magento:stage:install:
+    variables:
+      INPUT_MAGENTO_VERSION: "2.4.5-p1"
+      INPUT_OVERRIDE_SETTINGS: 1
+      INPUT_NO_PUSH: 1
+    extends: .install-magento:stage:install
+
+  pwa-studio:stage:install:
+    variables:
+      INPUT_OVERRIDE_SETTINGS: 1
+      INPUT_NO_PUSH: 0
+    extends: .pwa-studio:stage:install
+
+  build:stage:
+    extends: .build:stage

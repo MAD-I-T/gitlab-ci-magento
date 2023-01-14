@@ -1,0 +1,240 @@
+default:
+  artifacts:
+    untracked: true
+    expire_in: 1h
+  image:
+    name: ghcr.io/mad-i-t/magento-actions:3.17
+    entrypoint: [ "" ]
+  services:
+    - name: mysql:5.7
+      alias: mysql
+    - name: elasticsearch:7.6.2
+      alias: elasticsearch
+      command: [ "bin/elasticsearch", "-Expack.security.enabled=false", "-Ediscovery.type=single-node" ]
+    - name: rabbitmq:3.9-alpine
+      alias: rabbitmq
+      #ports:
+      #  - 5672:5672
+
+    #- name: "ghcr.io/mad-i-t/magento-opensearch:1.2"
+    #  alias: opensearch
+    #  command: [ "bin/elasticsearch", "-Expack.security.enabled=false", "-Ediscovery.type=single-node" ]
+
+
+before_script:
+  - ls
+  - pwd
+
+.default-script:
+  allow_failure: true
+  script:
+    - curl "http://elasticsearch:9200/_cat/health"
+    - bash /entrypoint.sh
+
+variables:
+  RABBITMQ_DEFAULT_USER: "magento"
+  RABBITMQ_DEFAULT_PASS: "magento"
+  RABBITMQ_DEFAULT_VHOST: "/"
+  BUCKET_COMMIT: bucket-commit-$CI_COMMIT_SHA.tar.gz
+  MYSQL_ROOT_PASSWORD: magento
+  MYSQL_DATABASE: magento
+  INPUT_PHP: "7.4"
+  INPUT_PROCESS: ""
+  INPUT_OVERRIDE_SETTINGS: "0"
+  COMPOSER_AUTH: $COMPOSER_AUTH
+  SSH_PRIVATE_KEY: $STAGE_SSH_PRIVATE_KEY
+  SSH_CONFIG: $STAGE_SSH_CONFIG
+  INPUT_DEPLOYER: 0
+  INPUT_ELASTICSEARCH: 1
+  INPUT_ELASTICSUITE: 0
+  INPUT_COMPOSER_VERSION: 0
+  INPUT_KEEP_RELEASES: 0
+  INPUT_EXTENSION: ''
+  INPUT_SEVERITY: 1
+  INPUT_MAGENTO_VERSION: 0
+  INPUT_DISABLE_MODULES: ''
+  INPUT_ENABLE: ''
+  INPUT_NO_PUSH: 0
+  INPUT_UNIT_TEST_CONFIG: 'dev/tests/unit/phpunit.xml.dist'
+  INPUT_NODE_VERSION: 16
+  INPUT_STANDARD: 'Magento2'
+  USER: $STAGE_USER
+  HOST: $STAGE_HOST
+  HOST_DEPLOY_PATH: $STAGE_HOST_DEPLOY_PATH
+  HOST_DEPLOY_PATH_BUCKET: $STAGE_HOST_DEPLOY_PATH/bucket
+
+cache:
+  key: composer
+  paths:
+    - ~/.composer/cache
+
+stages:
+  - install
+  - build
+  - test
+  - security-scan
+  - deploy
+  - cleanup
+
+
+.install-magento:stage:install:
+  variables:
+    INPUT_PROCESS: "create-project"
+    INPUT_MAGENTO_VERSION: "2.4.5-p1"
+    INPUT_NO_PUSH: 1
+  extends: .default-script
+  stage: install
+  environment:
+    name: staging
+
+.pwa-studio:stage:install:
+  variables:
+    INPUT_PROCESS: "pwa-studio-install"
+    INPUT_OVERRIDE_SETTINGS: 1
+    INPUT_NO_PUSH: 1
+  extends: .default-script
+  stage: install
+  environment:
+    name: staging
+
+.build:stage:
+  variables:
+    INPUT_PROCESS: "build"
+    INPUT_OVERRIDE_SETTINGS: "0"
+  extends: .default-script
+  stage: build
+  environment:
+    name: staging
+
+
+.static-test:stage:test:
+  variables:
+    INPUT_PROCESS: "static-test"
+  extends: .default-script
+  stage: test
+  environment:
+    name: staging
+
+.unit-test:stage:test:
+  variables:
+    INPUT_PROCESS: "unit-test"
+  extends: .default-script
+  stage: test
+  environment:
+    name: staging
+
+
+.unit-test-testsuite:stage:test:
+  variables:
+    INPUT_PROCESS: "unit-test"
+    INPUT_TESTSUITE: "Magento_Unit_Tests_Other"
+  extends: .default-script
+  stage: test
+  environment:
+    name: staging
+
+.unit-test-custom-path:stage:test:
+  variables:
+    INPUT_PROCESS: "unit-test"
+    INPUT_UNIT_TEST_SUBSET_PATH: 'vendor/magento/module-email/Test/Unit'
+  extends: .default-script
+  stage: test
+  environment:
+    name: staging
+
+
+.coding-standard:test:stage:
+  variables:
+    INPUT_PROCESS: "phpcs-test"
+    INPUT_EXTENSION: 'magento/vendor/magento/module-email'
+  extends: .default-script
+  stage: test
+  environment:
+    name: staging
+
+.security-scan-files:stage:test:
+  variables:
+    INPUT_PROCESS: "security-scan-files"
+    INPUT_OVERRIDE_SETTINGS: "0"
+  extends: .default-script
+  stage: test
+  environment:
+    name: staging
+
+
+.security-scan-module:stage:test:
+  variables:
+    INPUT_PROCESS: "security-scan-modules"
+    INPUT_OVERRIDE_SETTINGS: "0"
+  extends: .default-script
+  stage: test
+  environment:
+    name: staging
+
+
+.integration-test-testsuite:stage:test:
+  variables:
+    INPUT_PROCESS: "integration-test"
+    INPUT_TESTSUITE: "Memory Usage Tests"
+  extends: .default-script
+  stage: test
+  environment:
+    name: staging
+
+.integration-test-class:stage:test:
+  variables:
+    INPUT_PROCESS: "integration-test"
+    INPUT_INTEGRATION_CLASS: "./testsuite/Magento/MemoryUsageTest.php"
+  extends: .default-script
+  stage: test
+  environment:
+    name: staging
+
+.integration-test-class-filter:stage:test:
+  variables:
+    INPUT_PROCESS: "integration-test"
+    INPUT_TESTSUITE: "Memory Usage Tests"
+    INPUT_INTEGRATION_CLASS: "./testsuite/Magento/MemoryUsageTest.php"
+    INPUT_INTEGRATION_FILTER: "testAppReinitializationNoMemoryLeak"
+  extends: .default-script
+  stage: test
+  environment:
+    name: staging
+
+
+.deploy-staging:stage:deploy:
+  variables:
+    INPUT_PROCESS: "deploy-staging"
+  extends: .default-script
+  stage: deploy
+  environment:
+    name: staging
+
+
+.cleanup-staging:stage:cleanup:
+  variables:
+    INPUT_PROCESS: "cleanup-staging"
+  extends: .default-script
+  stage: cleanup
+  when: on_failure
+  environment:
+    name: staging
+
+
+.deploy-production:stage:deploy:
+  variables:
+    INPUT_PROCESS: "deploy-prod"
+  extends: .default-script
+  stage: deploy
+  environment:
+    name: production
+
+
+.cleanup-production:stage:cleanup:
+  variables:
+    INPUT_PROCESS: "cleanup-prod"
+  extends: .default-script
+  stage: cleanup
+  when: on_failure
+  environment:
+    name: production
