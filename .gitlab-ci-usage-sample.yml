@@ -1,5 +1,6 @@
 include:
-  - local: '.magento-actions-full-template.yml'
+  - remote: 'https://github.com/MAD-I-T/gitlab-ci-magento/blob/main/.magento-actions-full-template.yml'
+
 
 build:stage:
   extends: .build:stage
