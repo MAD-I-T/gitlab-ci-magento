@@ -21,7 +21,7 @@ The project must respect the following scafolding :
 You can check the **.gitlab-ci-install-sample.yml** to help setup the project for you.
 For the runner to be able to push the magento and/or pwa-studio directory to the repo. You must declare a deploys key in **Settings>Repository>Deploy Keys**  with a `write` access.
 Watch the video below to see how to create and use the mandatory gitlab-ci variables (ssh_config, ssh key, etc...). The full list of variables are available in the template file.
-Also see full list of actions and meaning.
+Also [see full list of actions](#List-of-available-actions).
 <h3>Tutorial in video</h3>
 <div align="center">
   <a href="https://www.youtube.com/watch?v=FUxV3w5FLec"><img src="https://user-images.githubusercontent.com/3765910/141300038-43ad383b-af98-4b51-a46a-a4044e2fcbf4.png" alt="magento zero downtime in video gitlab-ci"></a>
@@ -29,6 +29,8 @@ Also see full list of actions and meaning.
 
 
 If you're not familiar with CI/CD on gitlab, we do offer hands on trainning and setup, [see details about the offer here](https://www.madit.fr/shop/product/ci-cd-support-gitlab-ci-magento-9) 
+
+## List of available actions 
 
 - [install magento from gitlab-ci](#install-magento)
 - [install pwa-studio from gitlab-ci](#install-pwa-studio)
