@@ -1,5 +1,5 @@
   include:
-    - local: '.gitlab-ci-main-template.yml'
+    - remote: 'https://raw.githubusercontent.com/MAD-I-T/gitlab-ci-magento/main/.magento-actions-full-template.yml'
 
   install-magento:stage:install:
     variables:

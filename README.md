@@ -1,14 +1,18 @@
 # gitlab-ci-magento
 This is an extension of [magento-actions](https://github.com/MAD-I-T/magento-actions) for gitlab-ci. Install, build, test and deploy magento through gitlab-ci.
 
+<div style="text-align:center;">
+<img style="margin:auto; display:block;" src="https://user-images.githubusercontent.com/3765910/212491524-a05f5543-48a5-4b5a-a3bc-91d5c8ca9077.png" />
+</div>
+
 
 Usage
 ------
 
-Include the template in your .gitlab-ci.yml
-and extend the kind of job you want to trigger. (more about [include property](https://docs.gitlab.com/ee/ci/yaml/includes.html#include-an-array-of-configuration-files) on gitlab)
+Include the [template](https://raw.githubusercontent.com/MAD-I-T/gitlab-ci-magento/main/.magento-actions-full-template.yml) (ie `.magento-actions-full-template.yml`) in your `.gitlab-ci.yml`
+and extend the of jobs/actions you want to trigger. (more about [include property](https://docs.gitlab.com/ee/ci/yaml/includes.html#include-an-array-of-configuration-files) on gitlab)
 
-Like in **.gitlab-ci-usage-sample.yml** this will trigger the [build](#run-build) and some test.
+Like in **[.gitlab-ci-usage-sample.yml](https://github.com/MAD-I-T/gitlab-ci-magento/blob/main/.gitlab-ci-usage-sample.yml)** this will trigger the build and some test.
 The project must respect the following scafolding :
 
 ```bash
@@ -18,7 +22,7 @@ The project must respect the following scafolding :
 └── pwa-studio # optional pwa-studio directory for pwa src code
 ```
 
-You can check the **.gitlab-ci-install-sample.yml** to help setup the project for you.
+You can check the **[.gitlab-ci-install-sample.yml](https://github.com/MAD-I-T/gitlab-ci-magento/blob/main/.gitlab-ci-install-sample.yml)** to help setup the project for you.
 For the runner to be able to push the magento and/or pwa-studio directory to the repo. You must declare a deploys key in **Settings>Repository>Deploy Keys**  with a `write` access.
 Watch the video below to see how to create and use the mandatory gitlab-ci variables (ssh_config, ssh key, etc...). The full list of variables are available in the template file.
 Also [see full list of actions](#List-of-available-actions).
@@ -28,7 +32,7 @@ Also [see full list of actions](#List-of-available-actions).
 </div>
 
 
-If you're not familiar with CI/CD on gitlab, we do offer hands on trainning and setup, [see details about the offer here](https://www.madit.fr/shop/product/ci-cd-support-gitlab-ci-magento-9) 
+If you're not familiar with CI/CD on gitlab, we do offer hands on trainning and setup, **[see details about the offer here](https://www.madit.fr/shop/product/ci-cd-support-gitlab-ci-magento-9)** 
 
 ## List of available actions 
 
