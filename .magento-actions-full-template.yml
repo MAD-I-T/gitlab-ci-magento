@@ -97,6 +97,17 @@ stages:
   environment:
     name: staging
 
+
+.install-mage-os:stage:install:
+  variables:
+    INPUT_PROCESS: "mageos"
+    INPUT_MAGENTO_VERSION: "2.4.5-p1"
+    INPUT_NO_PUSH: 1
+  extends: .default-script
+  stage: install
+  environment:
+    name: staging
+
 .build:stage:
   variables:
     INPUT_PROCESS: "build"
@@ -142,6 +153,14 @@ stages:
   environment:
     name: staging
 
+.mess-detector:test:stage:
+  variables:
+    INPUT_PROCESS: "mess-detector"
+    INPUT_MD_PATH: 'magento/vendor/magento/module-email'
+  extends: .default-script
+  stage: test
+  environment:
+    name: staging
 
 .coding-standard:test:stage:
   variables:

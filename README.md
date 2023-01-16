@@ -34,6 +34,7 @@ If you're not familiar with CI/CD on gitlab, we do offer hands on trainning and 
 
 - [install magento from gitlab-ci](#install-magento)
 - [install pwa-studio from gitlab-ci](#install-pwa-studio)
+- [install magento from mage-os repo](#install-magento-from-mage-os)
 - [Magento and/or pwa-studio build](#run-build)
 - [Coding standard check](#Magento-coding-standard-check)
 - [Magento security scanners files](#Scan-magento-files-for-vulnerabilities)
@@ -42,6 +43,7 @@ If you're not familiar with CI/CD on gitlab, we do offer hands on trainning and 
 - [Zero-downtime-deployer](#Deploy-magento-to-staging-server)
 - [Integration tests](#Unit-test-filtered-by-testsuite)
 - [Static testing](#Run-all-magento-static-tests)
+- [Mess detector](#Run-mess-detector)
 - [see more on the forum](https://forum.madit.fr/)
 
 
@@ -64,8 +66,19 @@ It is also possible to specify a specific pwa-studio version you want through **
 .pwa-studio:stage:install:
   variables:
     INPUT_NO_PUSH: 1
-  extends: .pwa-studio:stage:install:
+  extends: .pwa-studio:stage:install
 ```
+
+### install magento from mage-os
+If you want to push the files to the repo pass INPUT_NO_PUSH to 0.
+```
+install-mage-os-magento:
+  variables:
+    INPUT_MAGENTO_VERSION: "2.4.5-p1"
+    INPUT_NO_PUSH: 1
+  extends: .install-mage-os:stage:install
+```
+
 
 ### Run build 
 Run all magento and/or pwa-studio apps
@@ -110,6 +123,15 @@ coding-standard:
   variables:
     INPUT_EXTENSION: 'magento/vendor/magento/module-email'
   extends: .coding-standard:test:stage
+```
+
+### Run mess detector
+```
+mess-detector:
+  variables:
+    INPUT_PROCESS: "mess-detector"
+    INPUT_MD_PATH: 'magento/vendor/magento/module-email' # path to the src to mess detect
+  extends: .mess-detector:test:stage
 ```
 
 ### Scan magento files for vulnerabilities
