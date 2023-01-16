@@ -1,0 +1,24 @@
+  include:
+    - remote: 'https://raw.githubusercontent.com/MAD-I-T/gitlab-ci-magento/main/.magento-actions-full-template.yml'
+
+  build:stage:
+    extends: .build:stage
+
+  .deploy-staging:stage:deploy:
+    variables:
+      INPUT_PROCESS: "deploy-staging"
+    extends: .default-script
+    stage: deploy
+    environment:
+      name: staging
+
+
+  .cleanup-staging:stage:cleanup:
+    variables:
+      INPUT_PROCESS: "cleanup-staging"
+    extends: .default-script
+    stage: cleanup
+    when: on_failure
+    environment:
+      name: staging
+
