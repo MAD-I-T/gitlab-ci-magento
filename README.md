@@ -9,7 +9,7 @@ This is an extension of [magento-actions](https://github.com/MAD-I-T/magento-act
 Usage
 ------
 
-Include the [template](https://raw.githubusercontent.com/MAD-I-T/gitlab-ci-magento/main/.magento-actions-full-template.yml) (ie `.magento-actions-full-template.yml`) in your `.gitlab-ci.yml`
+Include the [template](https://raw.githubusercontent.com/MAD-I-T/gitlab-ci-magento/main/.magento-actions-full-template.yml) (ie `https://raw.githubusercontent.com/MAD-I-T/gitlab-ci-magento/main/.magento-actions-full-template.yml`) in your `.gitlab-ci.yml`
 and extend the of jobs/actions you want to trigger. (more about [include property](https://docs.gitlab.com/ee/ci/yaml/includes.html#include-an-array-of-configuration-files) on gitlab)
 
 Like in **[.gitlab-ci-usage-sample.yml](https://github.com/MAD-I-T/gitlab-ci-magento/blob/main/.gitlab-ci-usage-sample.yml)** this will trigger the build and some test.
