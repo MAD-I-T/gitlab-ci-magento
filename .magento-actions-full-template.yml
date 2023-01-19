@@ -100,7 +100,7 @@ stages:
 
 .install-mage-os:stage:install:
   variables:
-    INPUT_PROCESS: "mageos"
+    INPUT_PROCESS: "install-mage-os"
     INPUT_MAGENTO_VERSION: "2.4.5-p1"
     INPUT_NO_PUSH: 1
   extends: .default-script

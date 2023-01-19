@@ -54,6 +54,7 @@ If you're not familiar with CI/CD on gitlab, we do offer hands on trainning and 
 - [Integration tests](#Unit-test-filtered-by-testsuite)
 - [Static testing](#Run-all-magento-static-tests)
 - [Mess detector](#Run-mess-detector)
+- [OVERRIDING THE DEFAULT SCRIPTS](#Overriding)
 - [see more on the forum](https://forum.madit.fr/)
 
 
@@ -208,5 +209,20 @@ deploy-production:
 cleanup-production:
   extends: .cleanup-production:stage:cleanup
 ```
+
+### Overriding
+
+One can override the default scripts in the parent project (i.e [magento-actions](https://github.com/MAD-I-T/magento-actions/tree/master/scripts)).
+use the `INPUT_OVERRIDE_SETTINGS` variable set it to 1.
+You'll also have to create scripts or config dirs in the root of your project.
+Here's an example of project scafolding to override the action's default configs
+  ```bash
+  ├── .gitlab-ci.yml
+  ├── README.md 
+  └── magento # directory where you Magento source files should go
+  └── config # the filenames must be similar to thoses of the action ex: config/integration-test-config.php 
+  └── scripts #  ex: scripts/build.sh to override the build behaviour 
+  ```
+
 
 
