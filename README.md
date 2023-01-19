@@ -74,7 +74,7 @@ Donwload / Install the latest pwa-studio src
 If you want to push the files to the repo pass INPUT_NO_PUSH to 0.
 It is also possible to specify a specific pwa-studio version you want through **INPUT_VERSION** variable.
 ```
-.pwa-studio:stage:install:
+pwa-studio:stage:install:
   variables:
     INPUT_NO_PUSH: 1
   extends: .pwa-studio:stage:install
