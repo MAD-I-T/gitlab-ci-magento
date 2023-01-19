@@ -4,6 +4,12 @@ This is an extension of [magento-actions](https://github.com/MAD-I-T/magento-act
 <div style="text-align:center;">
 <img style="margin:auto; display:block;" src="https://user-images.githubusercontent.com/3765910/212491524-a05f5543-48a5-4b5a-a3bc-91d5c8ca9077.png" />
 </div>
+<h3>Intro tutorial in video </h3>
+<div align="center">
+  <a href="https://www.youtube.com/watch?v=NtZTYLooz-g"><img src="https://user-images.githubusercontent.com/3765910/212692624-690325f8-0cad-4ba2-a144-e9b3503a2da8.png" alt="magento zero downtime in video gitlab-ci"></a>
+</div>
+
+
 
 
 Usage
@@ -26,7 +32,7 @@ You can check the **[.gitlab-ci-install-sample.yml](https://github.com/MAD-I-T/g
 For the runner to be able to push the magento and/or pwa-studio directory to the repo. You must declare a deploys key in **Settings>Repository>Deploy Keys**  with a `write` access.
 Watch the video below to see how to create and use the mandatory gitlab-ci variables (ssh_config, ssh key, etc...). The full list of variables are available in the template file.
 Also [see full list of actions](#List-of-available-actions).
-<h3>Tutorial in video</h3>
+<h3>Zero-downtime tutorial in video</h3>
 <div align="center">
   <a href="https://www.youtube.com/watch?v=FUxV3w5FLec"><img src="https://user-images.githubusercontent.com/3765910/141300038-43ad383b-af98-4b51-a46a-a4044e2fcbf4.png" alt="magento zero downtime in video gitlab-ci"></a>
 </div>
