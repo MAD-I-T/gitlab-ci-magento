@@ -1,6 +1,7 @@
 # gitlab-ci-magento
-This is an extension of [magento-actions](https://github.com/MAD-I-T/magento-actions) for gitlab-ci. Install, build, test and deploy magento through gitlab-ci.
+This is a gitlab deployer tool inspired from [magento-actions](https://github.com/MAD-I-T/magento-actions) for gitlab-ci users. Install, build, test and deploy magento through gitlab-ci.
 
+<h3>Magento zero downtime deployment <a href="https://www.madit.fr/r/gitlab-deployer-tutorial ">written tutorial</a>.</h3>
 <h3>Intro tutorial in video </h3>
 <div align="center">
   <a href="https://www.youtube.com/watch?v=NtZTYLooz-g"><img src="https://user-images.githubusercontent.com/3765910/212692624-690325f8-0cad-4ba2-a144-e9b3503a2da8.png" alt="magento zero downtime in video gitlab-ci"></a>
@@ -27,7 +28,7 @@ The project must respect the following scafolding :
 
 You can check the **[.gitlab-ci-install-sample.yml](https://github.com/MAD-I-T/gitlab-ci-magento/blob/main/.gitlab-ci-install-sample.yml)** to help setup the project for you.
 For the runner to be able to push the magento and/or pwa-studio directory to the repo. You must declare a deploys key in **Settings>Repository>Deploy Keys**  with a `write` access.
-Watch the video below to see how to create and use the mandatory gitlab-ci variables (ssh_config, ssh key, etc...). The full list of variables are available in the template file.
+Watch the video below or [read the article](https://www.madit.fr/r/gitlab-deployer-tutorial) to see how to create and use the mandatory gitlab-ci variables (ssh_config, ssh key, etc...). The full list of variables are available in the template file.
 Also [see full list of actions](#List-of-available-actions).
 <h3>Zero-downtime tutorial in video</h3>
 <div align="center">
