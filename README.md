@@ -1,9 +1,6 @@
 # gitlab-ci-magento
 This is an extension of [magento-actions](https://github.com/MAD-I-T/magento-actions) for gitlab-ci. Install, build, test and deploy magento through gitlab-ci.
 
-<div style="text-align:center;">
-<img style="margin:auto; display:block;" src="https://user-images.githubusercontent.com/3765910/212491524-a05f5543-48a5-4b5a-a3bc-91d5c8ca9077.png" />
-</div>
 <h3>Intro tutorial in video </h3>
 <div align="center">
   <a href="https://www.youtube.com/watch?v=NtZTYLooz-g"><img src="https://user-images.githubusercontent.com/3765910/212692624-690325f8-0cad-4ba2-a144-e9b3503a2da8.png" alt="magento zero downtime in video gitlab-ci"></a>
