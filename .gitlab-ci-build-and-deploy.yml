@@ -4,7 +4,7 @@
   build:stage:
     extends: .build:stage
 
-  .deploy-staging:stage:deploy:
+  deploy-staging:stage:deploy:
     variables:
       INPUT_PROCESS: "deploy-staging"
     extends: .default-script
@@ -13,7 +13,7 @@
       name: staging
 
 
-  .cleanup-staging:stage:cleanup:
+  cleanup-staging:stage:cleanup:
     variables:
       INPUT_PROCESS: "cleanup-staging"
     extends: .default-script
