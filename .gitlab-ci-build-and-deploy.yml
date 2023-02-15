@@ -4,21 +4,9 @@
   build:stage:
     extends: .build:stage
 
-  deploy-staging:stage:deploy:
-    variables:
-      INPUT_PROCESS: "deploy-staging"
-    extends: .default-script
-    stage: deploy
-    environment:
-      name: staging
+  deploy-staging:
+    extends: .deploy-staging:stage:deploy
 
-
-  cleanup-staging:stage:cleanup:
-    variables:
-      INPUT_PROCESS: "cleanup-staging"
-    extends: .default-script
-    stage: cleanup
-    when: on_failure
-    environment:
-      name: staging
+  cleanup-staging:
+    extends: .cleanup-staging:stage:cleanup
 

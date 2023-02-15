@@ -5,13 +5,13 @@
     variables:
       INPUT_MAGENTO_VERSION: "2.4.5-p1"
       INPUT_OVERRIDE_SETTINGS: 1
-      INPUT_NO_PUSH: 1
+      INPUT_NO_PUSH: 0
     extends: .install-magento:stage:install
 
   pwa-studio:stage:install:
     variables:
       INPUT_OVERRIDE_SETTINGS: 1
-      INPUT_NO_PUSH: 0
+      INPUT_NO_PUSH: 1
     extends: .pwa-studio:stage:install
 
   build:stage:
