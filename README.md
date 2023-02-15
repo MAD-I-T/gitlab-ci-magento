@@ -1,5 +1,5 @@
 # gitlab-ci-magento
-This is a gitlab deployer tool inspired from [magento-actions](https://github.com/MAD-I-T/magento-actions) for gitlab-ci users. Install, build, test and deploy magento through gitlab-ci.
+This is a **gitlab deployer** tool inspired from [magento-actions](https://github.com/MAD-I-T/magento-actions) for gitlab-ci users. Install, build, test and deploy magento through gitlab-ci.
 
 <h3>Magento zero downtime deployment <a href="https://www.madit.fr/r/gitlab-deployer-tutorial ">written tutorial</a>.</h3>
 <h3>Intro tutorial in video </h3>
