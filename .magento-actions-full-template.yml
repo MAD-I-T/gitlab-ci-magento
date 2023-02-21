@@ -3,7 +3,7 @@ default:
     untracked: true
     expire_in: 1h
   image:
-    name: ghcr.io/mad-i-t/magento-actions:3.18
+    name: ghcr.io/mad-i-t/magento-actions:3.19
     entrypoint: [ "" ]
   services:
     - name: mysql:5.7
@@ -156,6 +156,15 @@ stages:
 .mess-detector:test:stage:
   variables:
     INPUT_PROCESS: "mess-detector"
+    INPUT_MD_PATH: 'magento/vendor/magento/module-email'
+  extends: .default-script
+  stage: test
+  environment:
+    name: staging
+
+.phpstan:test:stage:
+  variables:
+    INPUT_PROCESS: "phpstan"
     INPUT_MD_PATH: 'magento/vendor/magento/module-email'
   extends: .default-script
   stage: test

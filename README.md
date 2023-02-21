@@ -51,6 +51,7 @@ If you're not familiar with CI/CD on gitlab, we do offer hands on trainning and 
 - [Zero-downtime-deployer](#Deploy-magento-to-staging-server)
 - [Integration tests](#Unit-test-filtered-by-testsuite)
 - [Static testing](#Run-all-magento-static-tests)
+- [Phpstan](#Run-phpstan)
 - [Mess detector](#Run-mess-detector)
 - [OVERRIDING THE DEFAULT SCRIPTS](#Overriding)
 - [see more on the forum](https://forum.madit.fr/)
@@ -132,6 +133,15 @@ coding-standard:
   variables:
     INPUT_EXTENSION: 'magento/vendor/magento/module-email'
   extends: .coding-standard:test:stage
+```
+
+### Run phpstan
+```
+mess-detector:
+  variables:
+    INPUT_PROCESS: "phpstan"
+    INPUT_MD_PATH: 'magento/vendor/magento/module-email' # path to the src to analyse
+  extends: phpstan:test:stage
 ```
 
 ### Run mess detector
