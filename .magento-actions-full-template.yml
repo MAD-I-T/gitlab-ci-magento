@@ -3,23 +3,20 @@ default:
     untracked: true
     expire_in: 1h
   image:
-    name: ghcr.io/mad-i-t/magento-actions:3.19
+    name: ghcr.io/mad-i-t/magento-actions:3.20
     entrypoint: [ "" ]
+ 
   services:
     - name: mysql:5.7
       alias: mysql
-    - name: elasticsearch:7.6.2
-      alias: elasticsearch
-      command: [ "bin/elasticsearch", "-Expack.security.enabled=false", "-Ediscovery.type=single-node" ]
+    #- name: elasticsearch:7.6.2
+    #  alias: elasticsearch
+    #  command: [ "bin/elasticsearch", "-Expack.security.enabled=false", "-Ediscovery.type=single-node" ]
+    - name: ghcr.io/mad-i-t/magento-opensearch:2.5.0
+      alias: elasticsearch opensearch
+      command: ["bash", "-c", "env 'discovery.type=single-node' 'cluster.name=opensearch' ./opensearch-docker-entrypoint.sh"]
     - name: rabbitmq:3.9-alpine
       alias: rabbitmq
-      #ports:
-      #  - 5672:5672
-
-    #- name: "ghcr.io/mad-i-t/magento-opensearch:1.2"
-    #  alias: opensearch
-    #  command: [ "bin/elasticsearch", "-Expack.security.enabled=false", "-Ediscovery.type=single-node" ]
-
 
 before_script:
   - ls
@@ -28,10 +25,13 @@ before_script:
 .default-script:
   allow_failure: true
   script:
-    - curl "http://elasticsearch:9200/_cat/health"
+    - curl "http://elasticsearch:9200/"
     - bash /entrypoint.sh
 
 variables:
+  OPENSEARCH_JAVA_OPTS: "-Xms512m -Xmx512m"
+  DISABLE_INSTALL_DEMO_CONFIG: "true"
+  DISABLE_SECURITY_PLUGIN: "true"
   RABBITMQ_DEFAULT_USER: "magento"
   RABBITMQ_DEFAULT_PASS: "magento"
   RABBITMQ_DEFAULT_VHOST: "/"
@@ -45,7 +45,6 @@ variables:
   SSH_PRIVATE_KEY: $STAGE_SSH_PRIVATE_KEY
   SSH_CONFIG: $STAGE_SSH_CONFIG
   INPUT_DEPLOYER: 0
-  INPUT_ELASTICSEARCH: 1
   INPUT_ELASTICSUITE: 0
   INPUT_COMPOSER_VERSION: 0
   INPUT_KEEP_RELEASES: 0
@@ -67,6 +66,7 @@ cache:
   key: composer
   paths:
     - ~/.composer/cache
+
 
 stages:
   - install
