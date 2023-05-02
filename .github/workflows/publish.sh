@@ -1,7 +1,6 @@
 name: publish
 
 on: [push]
-
 jobs:
   publish-action-docker-image:
     runs-on: ubuntu-latest
