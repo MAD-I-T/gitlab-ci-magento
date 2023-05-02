@@ -1,4 +1,6 @@
-# this a legacy file please use newer sample and instructions
+# this a legacy file please use newer sample and instructions #
+######################## DEPRECATED ###########################
+###############################################################
 image: ghcr.io/mad-i-t/magento-actions:3.4
 
 variables:
