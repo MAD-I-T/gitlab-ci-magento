@@ -1,12 +1,14 @@
 # gitlab-ci-magento
 This is a **gitlab deployer** tool inspired from [magento-actions](https://github.com/MAD-I-T/magento-actions) for gitlab-ci users. Install, build, test and deploy magento through gitlab-ci.
 
-<h3>Magento zero downtime deployment <a href="https://www.madit.fr/r/gitlab-deployer-tutorial ">written tutorial</a>.</h3>
 <h3>Intro tutorial in video </h3>
 <div align="center">
   <a href="https://www.youtube.com/watch?v=NtZTYLooz-g"><img src="https://user-images.githubusercontent.com/3765910/212692624-690325f8-0cad-4ba2-a144-e9b3503a2da8.png" alt="magento zero downtime in video gitlab-ci"></a>
 </div>
 
+Also checkout
+
+<h3>The Magento zero downtime deployment <a href="https://www.madit.fr/r/gitlab-deployer-tutorial ">written tutorial</a>.</h3>
 
 
 
@@ -96,7 +98,10 @@ Run all magento and/or pwa-studio apps
 build:
   extends: .build:stage
 ```
+By default the build processor will try and build all available themes in your project.
 
+Nonetheless, check the following link, if you wish to limit the build to specific [theme(s) and/or locale(s)](`https://forum.madit.fr/t/build-magento-specific-theme-s-on-gitlab-ci-hyva-support/99`).
+Also [hyva based](https://forum.madit.fr/t/build-magento-specific-theme-s-on-gitlab-ci-hyva-support/99/2) themes are supported.
 ### Run all magento static tests
 ```
 static-test-all:
