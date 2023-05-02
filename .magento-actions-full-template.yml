@@ -12,7 +12,7 @@ default:
     #- name: elasticsearch:7.6.2
     #  alias: elasticsearch
     #  command: [ "bin/elasticsearch", "-Expack.security.enabled=false", "-Ediscovery.type=single-node" ]
-    - name: docker pull ghcr.io/mad-i-t/gitlab-ci-magento/opensearch:2.5.0
+    - name: ghcr.io/mad-i-t/gitlab-ci-magento/opensearch:2.5.0
       alias: elasticsearch opensearch
       command: ["bash", "-c", "env 'discovery.type=single-node' 'cluster.name=opensearch' ./opensearch-docker-entrypoint.sh"]
     - name: rabbitmq:3.9-alpine
