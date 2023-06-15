@@ -15,7 +15,7 @@ Also checkout
 Usage
 ------
 
-Include the [template](https://raw.githubusercontent.com/MAD-I-T/gitlab-ci-magento/v3.21/.magento-actions-full-template.yml) (ie `https://raw.githubusercontent.com/MAD-I-T/gitlab-ci-magento/v3.21/.magento-actions-full-template.yml`) in your `.gitlab-ci.yml`
+Include the [template](https://raw.githubusercontent.com/MAD-I-T/gitlab-ci-magento/v3.22/.magento-actions-full-template.yml) (ie `https://raw.githubusercontent.com/MAD-I-T/gitlab-ci-magento/v3.21/.magento-actions-full-template.yml`) in your `.gitlab-ci.yml`
 and extend the of jobs/actions you want to trigger. (more about [include property](https://docs.gitlab.com/ee/ci/yaml/includes.html#include-an-array-of-configuration-files) on gitlab)
 
 Like in **[.gitlab-ci-usage-sample.yml](https://github.com/MAD-I-T/gitlab-ci-magento/blob/main/.gitlab-ci-usage-sample.yml)** this will trigger the build and some test.
@@ -69,7 +69,7 @@ install-magento:
     INPUT_NO_PUSH: 1
   extends: .install-magento:stage:install
 ```
-
+One can use our **[magento-devbox](https://github.com/MAD-I-T/magento-devbox)** as local dev env. Linux and mac os supported.
 ### install PWA-studio
 Donwload / Install the latest pwa-studio src
 If you want to push the files to the repo pass INPUT_NO_PUSH to 0.
