@@ -15,10 +15,10 @@ Also checkout
 Usage
 ------
 
-Include the [template](https://raw.githubusercontent.com/MAD-I-T/gitlab-ci-magento/v3.26/.magento-actions-full-template.yml) (ie `https://raw.githubusercontent.com/MAD-I-T/gitlab-ci-magento/v3.26/.magento-actions-full-template.yml`) in your `.gitlab-ci.yml`
+Include the [template](https://raw.githubusercontent.com/MAD-I-T/gitlab-ci-magento/v3.27/.magento-actions-full-template.yml) (ie `https://raw.githubusercontent.com/MAD-I-T/gitlab-ci-magento/v3.27/.magento-actions-full-template.yml`) in your `.gitlab-ci.yml`
 and extend the of jobs/actions you want to trigger. (more about [include property](https://docs.gitlab.com/ee/ci/yaml/includes.html#include-an-array-of-configuration-files) on gitlab)
 
-Like in **[.gitlab-ci-usage-sample.yml](https://github.com/MAD-I-T/gitlab-ci-magento/blob/main/.gitlab-ci-usage-sample.yml)** this will trigger the build and some test.
+Like in **[.gitlab-ci-usage-sample.yml](https://github.com/MAD-I-T/gitlab-ci-magento/blob/main/examples/.gitlab-ci-usage-sample.yml)** this will trigger the build and some test.
 The project must respect the following scafolding :
 
 ```bash
@@ -28,7 +28,7 @@ The project must respect the following scafolding :
 └── pwa-studio # optional pwa-studio directory for pwa src code
 ```
 
-You can check the **[.gitlab-ci-install-sample.yml](https://github.com/MAD-I-T/gitlab-ci-magento/blob/main/.gitlab-ci-install-sample.yml)** to help setup the project for you.
+You can check the **[.gitlab-ci-install-sample.yml](https://github.com/MAD-I-T/gitlab-ci-magento/blob/main/examples/.gitlab-ci-install-sample.yml)** to help setup the project for you.
 For the runner to be able to push the magento and/or pwa-studio directory to the repo. You must declare a deploys key in **Settings>Repository>Deploy Keys**  with a `write` access.
 Watch the video below or [read the article](https://www.madit.fr/r/gitlab-deployer-tutorial) to see how to create and use the mandatory gitlab-ci variables (ssh_config, ssh key, etc...). The full list of variables are available in the template file.
 Also [see full list of actions](#List-of-available-actions).
