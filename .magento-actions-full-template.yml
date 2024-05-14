@@ -80,7 +80,7 @@ stages:
 .install-magento:stage:install:
   variables:
     INPUT_PROCESS: "create-project"
-    INPUT_MAGENTO_VERSION: "2.4.6-p1"
+    INPUT_MAGENTO_VERSION: "2.4.7"
     INPUT_NO_PUSH: 1
   extends: .default-script
   stage: install
