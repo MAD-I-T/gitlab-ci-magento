@@ -56,6 +56,7 @@ If you're not familiar with CI/CD on gitlab, we do offer hands on trainning and 
 - [Phpstan](#Run-phpstan)
 - [Mess detector](#Run-mess-detector)
 - [OVERRIDING THE DEFAULT SCRIPTS](#Overriding)
+- [Complex build & deploy strategies](#Complex strategies)
 - [see more on the forum](https://forum.madit.fr/)
 
 
@@ -237,5 +238,39 @@ Here's an example of project scafolding to override the action's default configs
   └── scripts #  ex: scripts/build.sh to override the build behaviour 
   ```
 
+### Complex strategies
+
+
+Build magento only in a git repo containing magento and pwa-studio directory
+```
+build:
+  variables
+    INPUT_MAGENTO_ONLY: "1"
+  extends: .build:stage
+```
+Build pwa-studio only in a git repo containing magento and pwa-studio directory
+```
+build:
+  variables
+    INPUT_PWA_STUDIO_ONLY: "1"
+  extends: .build:stage
+```
+
+deploy magento only in a git repo containing magento and pwa-studio directory
+```
+deploy-production:
+  variables
+    INPUT_MAGENTO_ONLY: "1"
+  extends: .deploy-production:stage:deploy
+```
+deploy pwa-studio only in a git repo containing magento and pwa-studio directory
+```
+deploy-production:
+  variables
+    INPUT_PWA_STUDIO_ONLY: "1"
+  extends: .deploy-production:stage:deploy
+```
+
+Deploy magento and pwa-studio to different servers from one repo.
 
 
