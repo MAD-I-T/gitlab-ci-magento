@@ -15,7 +15,7 @@ Also checkout
 Usage
 ------
 
-Include the [template](https://raw.githubusercontent.com/MAD-I-T/gitlab-ci-magento/v3.29/.magento-actions-full-template.yml) (ie `https://raw.githubusercontent.com/MAD-I-T/gitlab-ci-magento/v3.29/.magento-actions-full-template.yml`) in your `.gitlab-ci.yml`
+Include the [template](https://raw.githubusercontent.com/MAD-I-T/gitlab-ci-magento/v3.30/.magento-actions-full-template.yml) (ie `https://raw.githubusercontent.com/MAD-I-T/gitlab-ci-magento/v3.30/.magento-actions-full-template.yml`) in your `.gitlab-ci.yml`
 and extend the of jobs/actions you want to trigger. (more about [include property](https://docs.gitlab.com/ee/ci/yaml/includes.html#include-an-array-of-configuration-files) on gitlab)
 
 Like in **[.gitlab-ci-usage-sample.yml](https://github.com/MAD-I-T/gitlab-ci-magento/blob/main/examples/.gitlab-ci-usage-sample.yml)** this will trigger the build and some test.
@@ -56,7 +56,7 @@ If you're not familiar with CI/CD on gitlab, we do offer hands on trainning and 
 - [Phpstan](#Run-phpstan)
 - [Mess detector](#Run-mess-detector)
 - [OVERRIDING THE DEFAULT SCRIPTS](#Overriding)
-- [Complex build & deploy strategies](#Complex strategies)
+- [Complex build & deploy strategies](#Complex-strategies)
 - [see more on the forum](https://forum.madit.fr/)
 
 
@@ -245,14 +245,14 @@ Build magento only in a git repo containing magento and pwa-studio directory
 ```
 build:
   variables
-    INPUT_MAGENTO_ONLY: "1"
+    INPUT_MAGENTO_ONLY: 1
   extends: .build:stage
 ```
 Build pwa-studio only in a git repo containing magento and pwa-studio directory
 ```
 build:
   variables
-    INPUT_PWA_STUDIO_ONLY: "1"
+    INPUT_PWA_STUDIO_ONLY: 1
   extends: .build:stage
 ```
 
@@ -260,17 +260,31 @@ deploy magento only in a git repo containing magento and pwa-studio directory
 ```
 deploy-production:
   variables
-    INPUT_MAGENTO_ONLY: "1"
+    INPUT_MAGENTO_ONLY: 1
   extends: .deploy-production:stage:deploy
 ```
 deploy pwa-studio only in a git repo containing magento and pwa-studio directory
 ```
 deploy-production:
   variables
-    INPUT_PWA_STUDIO_ONLY: "1"
+    INPUT_PWA_STUDIO_ONLY: 1
   extends: .deploy-production:stage:deploy
 ```
 
 Deploy magento and pwa-studio to different servers from one repo.
 
+
+### Apply patches & hotfixes during building process
+
+To apply specific magento patches and hotfixes:
+ 
+* put the .patch files in m2-hotfixes directory and/or use `.magento.env.yaml` file ([more info](https://experienceleague.adobe.com/en/docs/commerce-cloud-service/user-guide/develop/upgrade/apply-patches))
+* if `.magento.env.yaml` is present the patches are applied using magento qutality tools. Otherwise, the patch command line is used [see here](https://experienceleague.adobe.com/en/docs/commerce-knowledge-base/kb/how-to/how-to-apply-a-composer-patch-provided-by-magento)
+* then enable the patcher by setting `INPUT_APPLY_PATCHES` to 1 during the build process as follows : 
+```
+build:
+  variables
+    INPUT_APPLY_PATCHES: 1
+  extends: .build:stage
+```
 
