@@ -125,15 +125,6 @@ stages:
   stage: test
   environment:
     name: staging
-
-    
-.static-test:stage:test:
-  variables:
-    INPUT_PROCESS: "security-composer-audit"
-  extends: .default-script
-  stage: test
-  environment:
-    name: staging
     
 
 .unit-test:stage:test:
@@ -204,6 +195,15 @@ stages:
   variables:
     INPUT_PROCESS: "security-scan-modules"
     INPUT_OVERRIDE_SETTINGS: "0"
+  extends: .default-script
+  stage: test
+  environment:
+    name: staging
+
+    
+.security-composer-audit:stage:test:
+  variables:
+    INPUT_PROCESS: "security-composer-audit"
   extends: .default-script
   stage: test
   environment:
