@@ -3,7 +3,7 @@ default:
     untracked: true
     expire_in: 1h
   image:
-    name: ghcr.io/mad-i-t/magento-actions:3.30
+    name: ghcr.io/mad-i-t/magento-actions:3.31
     entrypoint: [ "" ]
  
   services:
@@ -125,6 +125,16 @@ stages:
   stage: test
   environment:
     name: staging
+
+    
+.static-test:stage:test:
+  variables:
+    INPUT_PROCESS: "security-composer-audit"
+  extends: .default-script
+  stage: test
+  environment:
+    name: staging
+    
 
 .unit-test:stage:test:
   variables:
