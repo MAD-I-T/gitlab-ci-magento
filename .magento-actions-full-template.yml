@@ -3,7 +3,7 @@ default:
     untracked: true
     expire_in: 1h
   image:
-    name: ghcr.io/mad-i-t/magento-actions:3.31
+    name: ghcr.io/mad-i-t/magento-actions:3.32
     entrypoint: [ "" ]
  
   services:
@@ -80,7 +80,7 @@ stages:
 .install-magento:stage:install:
   variables:
     INPUT_PROCESS: "create-project"
-    INPUT_MAGENTO_VERSION: "2.4.7"
+    INPUT_MAGENTO_VERSION: "2.4.8"
     INPUT_NO_PUSH: 1
   extends: .default-script
   stage: install

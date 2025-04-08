@@ -15,7 +15,7 @@ Also checkout
 Usage
 ------
 
-Include the [template](https://raw.githubusercontent.com/MAD-I-T/gitlab-ci-magento/v3.31/.magento-actions-full-template.yml) (ie `https://raw.githubusercontent.com/MAD-I-T/gitlab-ci-magento/v3.31/.magento-actions-full-template.yml`) in your `.gitlab-ci.yml`
+Include the [template](https://raw.githubusercontent.com/MAD-I-T/gitlab-ci-magento/v3.32/.magento-actions-full-template.yml) (ie `https://raw.githubusercontent.com/MAD-I-T/gitlab-ci-magento/v3.32/.magento-actions-full-template.yml`) in your `.gitlab-ci.yml`
 and extend the of jobs/actions you want to trigger. (more about [include property](https://docs.gitlab.com/ee/ci/yaml/includes.html#include-an-array-of-configuration-files) on gitlab)
 
 Like in **[.gitlab-ci-usage-sample.yml](https://github.com/MAD-I-T/gitlab-ci-magento/blob/main/examples/.gitlab-ci-usage-sample.yml)** this will trigger the build and some test.
@@ -66,7 +66,7 @@ If you want to push the files to the repo pass INPUT_NO_PUSH to 0.
 ```
 install-magento:
   variables:
-    INPUT_MAGENTO_VERSION: "2.4.5-p1"
+    INPUT_MAGENTO_VERSION: "2.4.8"
     INPUT_NO_PUSH: 1
   extends: .install-magento:stage:install
 ```
@@ -87,7 +87,7 @@ If you want to push the files to the repo pass INPUT_NO_PUSH to 0.
 ```
 install-mage-os-magento:
   variables:
-    INPUT_MAGENTO_VERSION: "2.4.5-p1"
+    INPUT_MAGENTO_VERSION: "2.4.8"
     INPUT_NO_PUSH: 1
   extends: .install-mage-os:stage:install
 ```
