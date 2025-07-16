@@ -24,8 +24,9 @@ The project must respect the following scafolding :
 ```bash
 ├── .gitlab.ci
 ├── README.md 
-├── magento # directory where you Magento source files should go 
-└── pwa-studio # optional pwa-studio directory for pwa src code
+├── magento # directory where you Magento source files should go
+├── pwa-studio #  optional pwa-studio directory for pwa src code 
+└── pwa-studio-second # optional second pwa-studio directory unlimited number for pwa store front supported
 ```
 
 You can check the **[.gitlab-ci-install-sample.yml](https://github.com/MAD-I-T/gitlab-ci-magento/blob/main/examples/.gitlab-ci-install-sample.yml)** to help setup the project for you.
