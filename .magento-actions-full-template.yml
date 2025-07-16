@@ -3,7 +3,7 @@ default:
     untracked: true
     expire_in: 1h
   image:
-    name: ghcr.io/mad-i-t/magento-actions:3.32
+    name: ghcr.io/mad-i-t/magento-actions:3.33
     entrypoint: [ "" ]
  
   services:
