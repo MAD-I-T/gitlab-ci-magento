@@ -104,6 +104,31 @@ By default the build processor will try and build all available themes in your p
 
 Nonetheless, check the following link, if you wish to limit the build to specific [theme(s) and/or locale(s)](`https://forum.madit.fr/t/build-magento-specific-theme-s-on-gitlab-ci-hyva-support/99`).
 Also [hyva based](https://forum.madit.fr/t/build-magento-specific-theme-s-on-gitlab-ci-hyva-support/99/2) themes are supported.
+
+Others build interesting non-exhaustive options of the build process are 
+
+###static deploy jobs
+
+speedup the build process through this options works similarly to ( setup:static-content:deploy --jobs )
+
+Possible values from 1 to 8
+
+```
+build:
+  extends: .build:stage
+    INPUT_STATIC_DEPLOY_JOBS: 8
+```
+
+###Static versioning
+This allows one to enable or disable static versioning during compilation, granted that the option is not set in config.php
+
+possible values 1 or 0
+```
+build:
+  extends: .build:stage
+    INPUT_STATIC_VERSIONING: 0
+```
+
 ### Run all magento static tests
 ```
 static-test-all:
