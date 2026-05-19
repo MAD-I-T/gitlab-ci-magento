@@ -1,7 +1,7 @@
 # this a legacy file please use newer sample and instructions #
 ######################## DEPRECATED ###########################
 ###############################################################
-image: ghcr.io/mad-i-t/magento-actions:3.4
+image: ghcr.io/mad-i-t/magento-actions:3.5
 
 variables:
   BUCKET_COMMIT: bucket-commit-$CI_COMMIT_SHA.tar.gz
@@ -27,7 +27,7 @@ stages:
 
 build-deploy:stage:
   image:
-    name: ghcr.io/mad-i-t/magento-actions:3.4
+    name: ghcr.io/mad-i-t/magento-actions:3.5
     entrypoint: [""]
   services:
     - name: mysql:5.7
